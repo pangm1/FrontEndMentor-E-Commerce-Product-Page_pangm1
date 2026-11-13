@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght,YOPQ@100..900,300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    img {
+        height: 100%;
+        width: auto;
+        object-fit: contain;
+    }
+
+    a {
+        color: var(--default-color, black);
+    }
+
+    &:focus {
+        outline-offset: 5px;
+    }
+
+    li {
+        list-style-position: inside;
+        &::marker {
+            content: '';
+        }
+    }
+
+    .visually-hidden {
+        position: fixed;
+        mask-size: 0%;
+    }
+}
+
+html {
+    /* Primary */
+    --orange: hsl(26, 100%, 55%);
+    --pale-orange: hsl(25, 100%, 94%);
+
+    /* Neutral */
+    --very-dark-blue: hsl(220, 13%, 13%);
+    --dark-grayish-blue: hsl(219, 9%, 45%);
+    --grayish-blue: hsl(220, 14%, 75%);
+    --light-grayish-blue: hsl(223, 64%, 98%);
+    --white: hsl(0, 0%, 100%);
+    /* lightbox background is 75% opacity */
+    --black: hsl(0, 0%, 0%);
+
+    /* Typography */
+    --font-kumbh: 'Kumbh Sans', sans-serig
+    --kumbh-normal: 400;
+    --kumbh-bold: 700;
+    /* defaults */
+    --default-font: var(--font-kumbh);
+    --default-font-weight: var(--kumbh-normal);
+    --default-color: var(--black);
+}
+
+body {
+    font-family: var(--default-font);
+    font-weight: var(--default-font-weight);
+
+    min-block-size: 100vh;
+    min-inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+body > header {
+    display: flex;
+    padding-block: 1.5rem;
+    padding-inline: 1.5rem;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    inset-block-start: 0;
+    background: var(--white);
+    
+    nav {
+        display: flex;
+        flex-grow: 1;
+        align-items: center;
+        gap: inherit;
+
+        :has(.svg-button) {
+            order: -1;
+        }
+    }
+
+
+    .image-link {
+        block-size: 1.5rem;
+        aspect-ratio: 1 / 1;
+    }
+    img {
+        display: block;
+    }
+    
+    .container {
+        block-size: min-content;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    [class*="-icon"] {
+        color: var(--very-dark-blue);
+    }
+}
+
+.svg-link, .svg-button {
+    inline-size: calc(1px * var(--icon-width, 100%));
+    block-size: calc(1px * var(--icon-height, 100%));
+    mask-image: var(--icon);
+    mask-size: contain;
+    background-color: currentColor;
+    mask-repeat: no-repeat;
+    aspect-ratio: var(var(--icon-width) / var(--icon-height), 1 / 1);
+    place-self: center;
+    border: none;
+}
+
+main {
+    margin-block: auto;
+    inline-size: 100%;
+}
+
+footer {
+    border-block-start: 1px solid var(--black);
+    margin-inline: 1rem;
+    margin-block-start: 1rem;
+    padding-block: 1rem;
+    text-align: center;
+}
+
+
+
+/* svg icons */
+.site-logo {
+    --icon: url(../images/logo.svg);
+    --icon-width: 138;
+    --icon-height: 20;
+    color: var(--very-dark-blue);
+}
+
+.prev-icon {
+    --icon: url(../images/icon-previous.svg);
+    --icon-width: 12;
+    --icon-height: 18;
+}
+.plus-icon {
+    --icon: url(../images/icon-plus.svg);
+    --icon-width: 12;
+    --icon-height: 12;
+}
+.next-icon {
+    --icon: url(../images/icon-next.svg);
+    --icon-width: 13;
+    --icon-height: 18;
+}
+.minus-icon {
+    --icon: url(../images/icon-minus.svg);
+    --icon-width: 12;
+    --icon-height: 4;
+}
+.open-icon {
+    --icon: url(../images/icon-menu.svg);
+    --icon-width: 16;
+    --icon-height: 15;
+}
+.delete-icon {
+    --icon: url(../images/icon-delete.svg);
+    --icon-width: 14;
+    --icon-height: 16;
+}
+.close-icon {
+    --icon: url(../images/icon-close.svg);
+    --icon-width: 14;
+    --icon-height: 15;
+}
+.cart-icon {
+    --icon: url(../images/icon-cart.svg);
+    --icon-width: 22;
+    --icon-height: 20;
+}
