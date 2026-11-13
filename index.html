@@ -3,42 +3,214 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <meta name="description" content="E-Commerce Product Page">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   
   <title>Frontend Mentor | E-commerce product page</title>
 
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
-    .attribution { font-size: 0.6875rem; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
-  </style>
+  <link rel="stylesheet" href="./styles/main.css">
+  <script defer src="./scripts/main.js"></script>
 </head>
 <body>
+  <header>
+    <nav>
+      <a href="#" class="svg-link site-logo">
+        Home Page
+      </a>
 
-  Collections
-  Men
-  Women
-  About
-  Contact
+      <div class="container">
+        <button class="svg-button open-icon" commandfor="header-nav" command="show-modal">
+          Open Site Navigation
+        </button>
+        <dialog id="header-nav">
+          <button class="svg-button close-icon" commandfor="header-nav" command="close">
+            Close Site Navigation
+          </button>
+          <ul>
+            <li>
+              <a href="#">
+                Collections
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Men
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Woman
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Contact
+              </a>
+            </li>
+          </ul>
+        </dialog>
+      </div>
+    </nav>
 
-  Sneaker Company
+    <div class="container">
+      <button type="button" popovertarget="cart" class="svg-button cart-icon">
+        Access Cart
+      </button>
+      <dialog id="cart" popover>
+        <h2>
+          Cart
+        </h2>
+        <ul>
+          <!-- supply list items -->
+          <li class="" data-item="" data-quantity="3">
+            <img src="./images/image-product-1-thumbnail.jpg" alt="">
+            <p>
+              Fall Limited Edition Sneakers
+            </p>
+            <p>
+              $<span class="cost">125.00</span> &times; <span class="quantity">3</span>
+            </p>
+            <p class="">
+              $<span class="total">375.00</span>
+            </p>
+            <button type="button" class="svg-button delete-icon">
+              Delete
+            </button>
+          </li>
+        </ul>
+        <p class="empty-message" hidden>
+          Your cart is empty.
+        </p>
+        <a href="#" class="button-link">
+          Checkout
+        </a>
+      </dialog>
+    </div>
 
-  Fall Limited Edition Sneakers
+    <a href="#" class="image-link">
+      <img src="./images/image-avatar.png" alt="Profile">
+    </a>
+  </header>
+  <main>
+    <header>
+      <h2>
+        Fall Limited Edition Sneakers
+      </h2>
+      <p>
+        Sneaker Company
+      </p>
+    </header>
+    <p>
+      These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
+    </p>
+    <div class="cost">
+      <p class="current">
+        $<span class="value">125.00</span>
+      </p>
+      <p class="discount">
+        <span class="value">50</span>%
+      </p>
+      <p class="original">
+        $<span class="value">250.00</span>
+      </p>
+    </div>
+    
+    <div class="gallery">
+      <div class="mobile">
+        <button aria-controls="mobile-gallery" class="svg-button prev-icon">
+          Previous Image
+        </button>
+        <button aria-controls="mobile-gallery" class="svg-button next-icon">
+          Next Image
+        </button>
+        <input id="mobile-gallery" type="number" value="0" min="0" max="4" hidden>
+        <div class="container">
+          Current Image
+        </div>
+      </div>
 
-  These low-profile sneakers are your perfect casual wear companion. Featuring a 
-  durable rubber outer sole, they’ll withstand everything the weather can offer.
+      <div class="desktop">
+        <input id="desktop-gallery" type="number" value="0" min="0" max="4" hidden>
+        <button commandfor="lightbox" command="show-modal" class="image-button container">
+          Open Lightbox Gallery
+        </button> 
 
-  $125.00
-  50%
-  $250.00
+        <dialog id="lightbox">
+          <button commandfor="lightbox" command="close" class="svg-button close-icon">
+            Close Lightbox Gallery
+          </button>
 
-  0
-  Add to cart
+          <button aria-controls="lightbox-gallery" class="svg-button prev-icon">
+            Previous Image
+          </button>
+          <button aria-controls="lightbox-gallery" class="svg-button next-icon">
+            Next Image
+          </button>
+          <input id="lightbox-gallery" type="number" value="0" min="0" max="4" hidden>
+          <div class="container">
+            Current Image
+          </div>
+          <!-- match other gallery data below-->
+          <ul id="lightbox-images" class="gallery-data">
+            <li>
+              <img src="./images/image-product-1-thumbnail.jpg" alt="" data-full-size="./images/image-product-1.jpg" aria-selected="true">
+            </li>
+            <li>
+              <img src="./images/image-product-2-thumbnail.jpg" alt="" data-full-size="./images/image-product-2.jpg">
+            </li>
+            <li>
+              <img src="./images/image-product-3-thumbnail.jpg" alt="" data-full-size="./images/image-product-3.jpg">
+            </li>
+            <li>
+              <img src="./images/image-product-4-thumbnail.jpg" alt="" data-full-size="./images/image-product-4.jpg">
+            </li>
+          </ul>
+        </dialog>
+      </div>
+
+      <!-- supply product images -->
+      <ul id="gallery-images" class="gallery-data">
+        <li>
+          <img src="./images/image-product-1-thumbnail.jpg" alt="" data-full-size="./images/image-product-1.jpg" aria-selected="true">
+        </li>
+        <li>
+          <img src="./images/image-product-2-thumbnail.jpg" alt="" data-full-size="./images/image-product-2.jpg">
+        </li>
+        <li>
+          <img src="./images/image-product-3-thumbnail.jpg" alt="" data-full-size="./images/image-product-3.jpg">
+        </li>
+        <li>
+          <img src="./images/image-product-4-thumbnail.jpg" alt="" data-full-size="./images/image-product-4.jpg">
+        </li>
+      </ul>
+    </div>
+
+    <form action="">
+      <label for="quantity">
+        Quantity
+      </label>
+      <button aria-controls="quantity" class="svg-button  minus-icon">-</button>
+      <button aria-controls="quantity" class="svg-button plus-icon">+</button>
+      <input type="number" id="quantity" class="plus-icon minus-icon" value="0" min="0" aria-live="aggressive">
+      <button type="button" class="icon-text-button cart-icon">
+        Add to cart
+      </button>
+    </form>
+  </main>
   
   <footer class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    <p>
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+    </p>
+    <p>
+      Coded by <a href="https://www.frontendmentor.io/profile/pangm1">Michael Pang</a>.
+    </p>
   </footer>
 </body>
 </html>

@@ -1,0 +1,22 @@
+- Cart Functionality
+    - How to supply information (item, quantity), use templating
+    - how to show empty text when cart is empty (:empty CSS?)
+
+- Gallery and Lightbox Functionality
+    - lightbox seems default in mobile, different gallery in desktop
+    - how to choose the current image in Gallery, and display it as the main image
+    - image button to open lightbox dialog
+    - mobile: 
+        - list of full-size images
+        - current image is determined by number in list item order, value of invisible number input
+        - update value using arrows (custom spin arrows)
+        - number input changes the current image (make sure range is in list (or mod)); aria-selected
+        - mark element as current-item class (to allow both arrow controls and click functionality for desktop)
+    - desktop:
+        - list of thumbnails, current image shows full-size
+        - thumbnails are clickable, change current image
+        - lightbox is just a dialog version of the gallery, except that it combines mobile functionality with the arrows
+        - thumbnail list should scroll when there are too many images in the list
+
+- putting arrow buttons to change the quantity (custom spin arrows)
+
