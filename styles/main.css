@@ -47,7 +47,7 @@ html {
     --black: hsl(0, 0%, 0%);
 
     /* Typography */
-    --font-kumbh: 'Kumbh Sans', sans-serig
+    --font-kumbh: 'Kumbh Sans', sans-serif;
     --kumbh-normal: 400;
     --kumbh-bold: 700;
     /* defaults */
@@ -59,6 +59,7 @@ html {
 body {
     font-family: var(--default-font);
     font-weight: var(--default-font-weight);
+    color: var(--default-color);
 
     min-block-size: 100vh;
     min-inline-size: 100%;
@@ -105,25 +106,147 @@ body > header {
     }
 
     [class*="-icon"] {
-        color: var(--very-dark-blue);
+        color: var(--dark-grayish-blue);
+    }
+
+    anchor-name: header;
+    .cart-icon {
+        anchor-name: cart;
     }
 }
 
-.svg-link, .svg-button {
-    inline-size: calc(1px * var(--icon-width, 100%));
-    block-size: calc(1px * var(--icon-height, 100%));
-    mask-image: var(--icon);
-    mask-size: contain;
-    background-color: currentColor;
-    mask-repeat: no-repeat;
-    aspect-ratio: var(var(--icon-width) / var(--icon-height), 1 / 1);
-    place-self: center;
+header nav dialog {
+    margin: 0;
+    inset: 0;
+    padding: 1.5rem;
+    max-height: none;
+    block-size: 100%;
+    inline-size: 70%;
     border: none;
+    background: var(--white);
+    
+    &::backdrop {
+        background: color-mix(in lab, #0000 25%, var(--black) 100%);
+    }
+
+    [class*="-icon"] {
+        display: block;
+        place-self: start;
+        color: var(--dark-grayish-blue);
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-block-start: 3rem;
+
+        a {
+            text-decoration: none;
+            color: var(--default-color);
+            font-weight: var(--kumbh-bold);
+        }
+    }
+}
+
+#cart {
+    /*  TODO delete this line after testing */
+    display: flex;
+    /* background: blue; */
+    min-block-size: 15rem;
+    inline-size: calc(100% - 1rem);
+    margin-inline: 0.5rem;
+    flex-direction: column;
+    border-radius: 1rem;
+    /* border: none; */
+    position: fixed;
+    position-anchor: cart;
+    inset-block-start: anchor(bottom);
+
+    &:has(ul:empty) {
+        ul, .button-link {
+            display: none;
+        }
+
+        .empty-message {
+            display: flex;
+        }
+
+    }
+
+    &:popover-open {
+        display: flex;
+    }
+
+    h2 {
+        padding: 1.5rem;
+        font-size: 1.5rem;
+        border-block-end: 1px solid var(--grayish-blue);
+    }
+
+    .empty-message {
+        flex: 1;
+        display: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+
+        li {
+            display: grid;
+            gap: 1rem;
+            margin-inline: 1rem;
+
+            > * {
+                place-self: center;
+            }
+
+            img {
+                grid-area: 1 / 1 / span 2 / auto;
+                block-size: 25%;
+                place-self: center;
+                border-radius: 0.25rem;
+            }
+
+            .product {
+                grid-area: auto / span 2;
+            }
+            
+            p:not(.product) {
+                grid-area: 2 / auto;
+            }
+
+            button {
+                grid-area: 1 / 4 / span 2 / span 1;
+                color: var(--grayish-blue);
+            }
+
+            .total {
+                color: var(--very-dark-blue);
+                font-weight: var(--kumbh-bold);
+            }
+        }
+    }
+
+    .button-link {
+        display: block;
+        padding-block: 1.5rem;
+        margin: 1.5rem;
+        font-weight: var(--kumbh-bold);
+        text-align: center;
+        text-decoration: none;
+        border-radius: 0.5rem;
+        background: var(--orange);
+    }
 }
 
 main {
     margin-block: auto;
     inline-size: 100%;
+    
 }
 
 footer {
@@ -137,6 +260,30 @@ footer {
 
 
 /* svg icons */
+.svg-link, .svg-button {
+    &::after {
+        content: '';
+        display: block;
+        block-size: 100%;
+        inline-size: 100%;
+        mask-image: var(--icon);
+        mask-size: contain;
+        mask-repeat: no-repeat;
+        background-color: currentColor;
+    }
+        
+    inline-size: calc(1px * var(--icon-width, 100%));
+    block-size: calc(1px * var(--icon-height, 100%));
+    aspect-ratio: var(--icon-width, 1) / var(--icon-height, 1);
+    margin: 0 !important;
+    padding-block: 0 !important;
+    padding-inline: 0 !important;
+    place-self: center;
+    font-size: 0;
+    background: none;
+    border: none;
+}
+
 .site-logo {
     --icon: url(../images/logo.svg);
     --icon-width: 138;
