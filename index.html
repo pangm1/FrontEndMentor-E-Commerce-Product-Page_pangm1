@@ -97,29 +97,9 @@
       <img src="./images/image-avatar.png" alt="Profile">
     </a>
   </header>
+
   <main>
-    <header>
-      <h2>
-        Fall Limited Edition Sneakers
-      </h2>
-      <p>
-        Sneaker Company
-      </p>
-    </header>
-    <p>
-      These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
-    </p>
-    <div class="cost">
-      <p class="current">
-        <span class="value">$125.00</span>
-      </p>
-      <p class="discount">
-        <span class="value">50%</span>
-      </p>
-      <p class="original">
-        <span class="value">$250.00</span>
-      </p>
-    </div>
+    
     
     <div class="gallery">
       <div class="mobile">
@@ -191,17 +171,51 @@
       </ul>
     </div>
 
-    <form action="">
-      <label for="quantity">
-        Quantity
-      </label>
-      <button aria-controls="quantity" class="svg-button  minus-icon">-</button>
-      <button aria-controls="quantity" class="svg-button plus-icon">+</button>
-      <input type="number" id="quantity" class="plus-icon minus-icon" value="0" min="0" aria-live="aggressive">
-      <button type="button" class="icon-text-button cart-icon">
-        Add to cart
-      </button>
-    </form>
+    <div class="container">
+      <header>
+        <h2 class="product">
+          Fall Limited Edition Sneakers
+        </h2>
+        <p>
+          Sneaker Company
+        </p>
+      </header>
+      <p>
+        These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything the weather can offer.
+      </p>
+      <div class="cost">
+        <p class="current">
+          <span class="value">$125.00</span>
+        </p>
+        <p class="discount">
+          <span class="value">50%</span>
+        </p>
+        <p class="original">
+          <span class="value">$250.00</span>
+        </p>
+      </div>
+
+      <form action="">
+        <label for="quantity" class="visually-hidden">
+          Quantity
+        </label>
+        <div class="container">
+          <button aria-controls="quantity" class="svg-button  minus-icon">
+            -
+          </button>
+          <button aria-controls="quantity" class="svg-button plus-icon">
+            +
+          </button>
+          
+          <input type="number" id="quantity" class="plus-icon minus-icon" value="0" min="0" aria-live="aggressive">
+        </div>
+        
+
+        <button type="button" class="icon-text-button cart-icon">
+          Add to cart
+        </button>
+      </form>
+    </div>
   </main>
   
   <footer class="attribution">
