@@ -19,4 +19,7 @@
         - thumbnail list should scroll when there are too many images in the list
 
 - putting arrow buttons to change the quantity (custom spin arrows)
+- making the list cell size be the correct way (it was the direct image stretching the cell to its size even when image size was set smaller, so I had to wrap it in a container)
+- using anchors to position cart dialog relative to cart button
+- making image and container fit in the cells without it stretching the cell or the cell stretching by itself
 

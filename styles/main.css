@@ -75,7 +75,9 @@ body > header {
     gap: 1rem;
     position: sticky;
     inset-block-start: 0;
-    background: var(--white);
+    background: var(--white, #fff);
+    border-block-end: 1px solid var(--grayish-blue);
+    z-index: 5;
     
     nav {
         display: flex;
@@ -85,6 +87,10 @@ body > header {
 
         :has(.svg-button) {
             order: -1;
+        }
+
+        .site-logo {
+            anchor-name: --site-logo;
         }
     }
 
@@ -109,9 +115,9 @@ body > header {
         color: var(--dark-grayish-blue);
     }
 
-    anchor-name: header;
+    anchor-name: --header;
     .cart-icon {
-        anchor-name: cart;
+        anchor-name: --cart;
     }
 }
 
@@ -149,19 +155,20 @@ header nav dialog {
     }
 }
 
-#cart {
-    /*  TODO delete this line after testing */
-    display: flex;
-    /* background: blue; */
-    min-block-size: 15rem;
-    inline-size: calc(100% - 1rem);
+dialog#cart {
+    /* display: flex; */
+    max-inline-size: 25rem;
+    margin-inline: 1rem;
+    block-size: 17rem;
     margin-inline: 0.5rem;
+    margin-block-start: 1rem;
     flex-direction: column;
     border-radius: 1rem;
-    /* border: none; */
-    position: fixed;
-    position-anchor: cart;
-    inset-block-start: anchor(bottom);
+    border: none;
+    box-shadow: 0 20px 75px -45px var(--black);
+    position-anchor: --cart;
+    position-area: bottom;
+    
 
     &:has(ul:empty) {
         ul, .button-link {
@@ -194,28 +201,42 @@ header nav dialog {
     ul {
         display: flex;
         flex-direction: column;
+        block-size: 6rem;
+        padding: 1.5rem;
+        overflow: scroll;
+        gap: 1.5rem;
 
         li {
             display: grid;
-            gap: 1rem;
-            margin-inline: 1rem;
+            gap: 0.5rem;
+            grid-template-columns: min-content auto auto min-content;
 
             > * {
-                place-self: center;
+                align-self: center;
             }
 
-            img {
+            .container:has(img) {
                 grid-area: 1 / 1 / span 2 / auto;
-                block-size: 25%;
-                place-self: center;
-                border-radius: 0.25rem;
+                aspect-ratio: 1;
+                block-size: 100%;
+                margin-inline-end: 1rem;
+
+                img {
+                    inline-size: 100%;
+                    block-size: 100%;
+                    object-fit: contain;
+                    contain: size;
+                    border-radius: 0.25rem;
+                }
             }
 
             .product {
-                grid-area: auto / span 2;
+                align-self: end;
+                grid-area: 1 / span 2;
             }
             
             p:not(.product) {
+                align-self: start;
                 grid-area: 2 / auto;
             }
 
@@ -233,7 +254,7 @@ header nav dialog {
 
     .button-link {
         display: block;
-        padding-block: 1.5rem;
+        padding-block: 1.25rem;
         margin: 1.5rem;
         font-weight: var(--kumbh-bold);
         text-align: center;
@@ -330,4 +351,54 @@ footer {
     --icon: url(../images/icon-cart.svg);
     --icon-width: 22;
     --icon-height: 20;
+}
+
+@media (width > 65rem) {
+    body {
+        padding-inline: 8rem;
+    }
+
+    body > header {
+        padding-block: 2rem;
+        gap: 2rem;
+
+        nav {
+            :has(.svg-button) {
+                order: 0;
+            }
+
+            .svg-button {
+                display: none;
+            }
+
+            dialog {
+                display: block;
+                position: absolute;
+                position-anchor: --site-logo;
+                inset-inline-start: anchor(--site-logo end);
+                margin-inline-start: 2rem;
+                background: none;
+
+                ul {
+                    margin: 0;
+                    block-size: 100%;
+                    flex-direction: row;
+                    gap: 2rem;  
+
+                    li {
+                        align-content: center;
+                        
+                        a {
+                            font-weight: var(--kumbh-normal);
+                            color: var(--dark-grayish-blue);
+                        }
+                    }
+                }
+            }
+        }
+
+        .image-link {
+            block-size: 2.5rem;
+        }
+    }
 }
