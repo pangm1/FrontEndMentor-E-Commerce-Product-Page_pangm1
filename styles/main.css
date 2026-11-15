@@ -277,6 +277,7 @@ dialog#cart {
 main {
     margin-block: auto;
     inline-size: 100%;
+    flex-grow: 1;
 
     .container > * {
         margin: 1.5rem;
@@ -403,6 +404,99 @@ main {
                 /* block-size: 100px; */
                 order: -1;
             }
+        }
+    }
+
+    
+    .gallery {
+        display: grid;
+        block-size: 20rem;
+        inline-size: 100%;
+        /* padding: 5rem; */
+
+        > .container {
+            anchor-name: --image-container;
+        }
+
+        .gallery-data {
+            /* background: green; */
+            position: absolute;
+
+            > * {
+                display: none;
+            }
+        }
+
+        .mobile {
+            display: block;
+            background: red;
+            position: fixed;
+
+            .svg-button {
+                display: block;
+                position: fixed;
+                background: var(--white);
+                aspect-ratio: 1;
+                block-size: 2rem;
+                border-radius: 50%;
+                margin: 1rem;
+                position-anchor: --image-container;
+                position-area: center;
+
+                &::after {
+                    place-self: center;
+                    block-size: 40%;
+                    mask-position: center;
+                }
+
+                &.prev-icon {
+                    justify-self: start;
+                }
+                &.next-icon {
+                    justify-self: end;
+                }
+            }
+
+            ~ .gallery-data li[aria-selected] {
+                display: block;
+                position: fixed;
+                /* inline-size: anchor-size(inline); */
+                /* block-size: anchor-size(block); */
+                /* background-image: var(--full-image); */
+                /* background-size: cover; */
+                /* background-position: center; */
+                /* background-repeat: no-repeat; */
+                z-index: -1;
+                /* position-anchor: --image-container; */
+                /* position-area: center; */
+
+                img {
+                    display: none;
+                }
+
+                &::after {
+                    content: "";
+                    position: fixed;
+                    position-anchor: --image-container;
+                    position-area: center;
+                    block-size: anchor-size(block);
+                    inline-size: anchor-size(inline);
+                    background-image: var(--full-image);
+                    background-position: center;
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                }
+            }
+        }
+
+        .desktop {
+            display: none;
+
+            .image-button.container {
+                anchor-name: --image-button;
+            }
+
+            background: cyan;
         }
     }
 }
@@ -548,10 +642,15 @@ footer {
     main {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        /* align-items: center; */
         padding: 5rem;
+        margin-block: 0;
+        /* block-size: 1000px; */
+        gap: 5rem;
+        
 
         > .container {
+            align-content: center;
             max-width: 32rem;
 
             .product {
@@ -579,6 +678,92 @@ footer {
 
                 > * {
                     margin: 0;
+                }
+            }
+        }
+
+        .gallery {
+            block-size: auto;
+            /* align-self: center; */
+            /* justify-self: center; */
+            
+            .mobile {
+                display: none;
+            }
+
+            .desktop {
+                display: flex;
+                position: fixed;
+
+                .image-button.container {
+                    position: fixed;
+                    /* display: none; */
+                    position-anchor: --image-container;
+                    position-area: center;
+                    aspect-ratio: 1;
+                    block-size: anchor-size(block);
+                    block-size: calc(anchor-size(block) / 5 * 4);
+                    block-size: auto;
+                    inline-size: anchor-size(inline);
+                    align-self: start;
+                    z-index: 4;
+                }
+
+                ~ .gallery-data {
+                    background: green;
+                    display: flex;
+                    flex-direction: row;
+                    position: fixed;
+                    position-anchor: --image-container;
+                    position-area: center;
+                    block-size: calc(anchor-size(block) / 5);
+                    inline-size: anchor-size(inline);
+                    justify-self: center;
+                    align-self: end;
+                    align-items: center;
+                    gap: 3rem;
+                    
+                    li {
+                        display: block;
+                        flex: 1;
+                        border-radius: 1rem;
+                        overflow: hidden;
+                        /* block-size: auto;
+                        inline-size: auto; */
+                        /* min-inline-size: auto;
+                        min-block-size: auto; */
+
+                        img {
+                            block-size: auto;
+                            inline-size: 100%;
+                        }
+                    }
+
+                    li[aria-selected] {
+                        position-anchor: none;
+                        position: static;
+                        pointer-events: none;
+
+                        img {
+                            display: block;
+                            object-fit: contain;
+                            /* z-index: -2; */
+
+                        }
+
+                        &::after {
+                            content: "";
+                            position: fixed;
+                            position-anchor: --image-button;
+                            position-area: center;
+                            block-size: anchor-size(block);
+                            inline-size: anchor-size(inline);
+                            background-image: var(--full-image);
+                            background-position: center;
+                            background-size: contain;
+                            background-repeat: no-repeat;
+                        }
+                    }
                 }
             }
         }

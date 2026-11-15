@@ -102,6 +102,9 @@
     
     
     <div class="gallery">
+      <div class="container">
+      </div>
+
       <div class="mobile">
         <button aria-controls="mobile-gallery" class="svg-button prev-icon">
           Previous Image
@@ -110,9 +113,9 @@
           Next Image
         </button>
         <input id="mobile-gallery" type="number" value="0" min="0" max="4" hidden>
-        <div class="container">
+        <!-- <div class="container">
           Current Image
-        </div>
+        </div> -->
       </div>
 
       <div class="desktop">
@@ -139,34 +142,36 @@
           <!-- match other gallery data below-->
           <ul id="lightbox-images" class="gallery-data">
             <li>
-              <img src="./images/image-product-1-thumbnail.jpg" alt="" data-full-size="./images/image-product-1.jpg" aria-selected="true">
+              <img src="./images/image-product-1-thumbnail.jpg" alt="" style="--full-image: url('./images/image-product-1.jpg');" aria-selected="true">
             </li>
             <li>
-              <img src="./images/image-product-2-thumbnail.jpg" alt="" data-full-size="./images/image-product-2.jpg">
+              <img src="./images/image-product-2-thumbnail.jpg" alt="" style="--full-image: url('./images/image-product-2.jpg');">
             </li>
             <li>
-              <img src="./images/image-product-3-thumbnail.jpg" alt="" data-full-size="./images/image-product-3.jpg">
+              <img src="./images/image-product-3-thumbnail.jpg" alt="" style="--full-image: url('./images/image-product-3.jpg');">
             </li>
             <li>
-              <img src="./images/image-product-4-thumbnail.jpg" alt="" data-full-size="./images/image-product-4.jpg">
+              <img src="./images/image-product-4-thumbnail.jpg" alt="" style="--full-image: url('./images/image-product-4.jpg');">
             </li>
           </ul>
         </dialog>
       </div>
 
+      
+
       <!-- supply product images -->
       <ul id="gallery-images" class="gallery-data">
-        <li>
-          <img src="./images/image-product-1-thumbnail.jpg" alt="" data-full-size="./images/image-product-1.jpg" aria-selected="true">
+        <li style="--full-image: url('../images/image-product-1.jpg');" aria-selected="true">
+          <img src="./images/image-product-1-thumbnail.jpg" alt="">
         </li>
-        <li>
-          <img src="./images/image-product-2-thumbnail.jpg" alt="" data-full-size="./images/image-product-2.jpg">
+        <li style="--full-image: url('../images/image-product-2.jpg');">
+          <img src="./images/image-product-2-thumbnail.jpg" alt="">
         </li>
-        <li>
-          <img src="./images/image-product-3-thumbnail.jpg" alt="" data-full-size="./images/image-product-3.jpg">
+        <li style="--full-image: url('../images/image-product-3.jpg');">
+          <img src="./images/image-product-3-thumbnail.jpg" alt="">
         </li>
-        <li>
-          <img src="./images/image-product-4-thumbnail.jpg" alt="" data-full-size="./images/image-product-4.jpg">
+        <li style="--full-image: url('../images/image-product-4.jpg');">
+          <img src="./images/image-product-4-thumbnail.jpg" alt="">
         </li>
       </ul>
     </div>
