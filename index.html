@@ -125,6 +125,9 @@
         </button> 
 
         <dialog id="lightbox">
+          <div class="container">
+          </div>
+          
           <button commandfor="lightbox" command="close" class="svg-button close-icon">
             Close Lightbox Gallery
           </button>
@@ -136,22 +139,19 @@
             Next Image
           </button>
           <input id="lightbox-gallery" type="number" value="0" min="0" max="4" hidden>
-          <div class="container">
-            Current Image
-          </div>
           <!-- match other gallery data below-->
-          <ul id="lightbox-images" class="gallery-data">
-            <li>
-              <img src="./images/image-product-1-thumbnail.jpg" alt="" style="--full-image: url('./images/image-product-1.jpg');" aria-selected="true">
+          <ul id="gallery-images" class="gallery-data">
+            <li style="--full-image: url('../images/image-product-1.jpg');" aria-selected="true" tabindex="0">
+              <img src="./images/image-product-1-thumbnail.jpg" alt="">
             </li>
-            <li>
-              <img src="./images/image-product-2-thumbnail.jpg" alt="" style="--full-image: url('./images/image-product-2.jpg');">
+            <li style="--full-image: url('../images/image-product-2.jpg');" tabindex="0">
+              <img src="./images/image-product-2-thumbnail.jpg" alt="">
             </li>
-            <li>
-              <img src="./images/image-product-3-thumbnail.jpg" alt="" style="--full-image: url('./images/image-product-3.jpg');">
+            <li style="--full-image: url('../images/image-product-3.jpg');" tabindex="0">
+              <img src="./images/image-product-3-thumbnail.jpg" alt="">
             </li>
-            <li>
-              <img src="./images/image-product-4-thumbnail.jpg" alt="" style="--full-image: url('./images/image-product-4.jpg');">
+            <li style="--full-image: url('../images/image-product-4.jpg');" tabindex="0">
+              <img src="./images/image-product-4-thumbnail.jpg" alt="">
             </li>
           </ul>
         </dialog>
@@ -161,16 +161,16 @@
 
       <!-- supply product images -->
       <ul id="gallery-images" class="gallery-data">
-        <li style="--full-image: url('../images/image-product-1.jpg');" aria-selected="true">
+        <li style="--full-image: url('../images/image-product-1.jpg');" aria-selected="true" tabindex="0">
           <img src="./images/image-product-1-thumbnail.jpg" alt="">
         </li>
-        <li style="--full-image: url('../images/image-product-2.jpg');">
+        <li style="--full-image: url('../images/image-product-2.jpg');" tabindex="0">
           <img src="./images/image-product-2-thumbnail.jpg" alt="">
         </li>
-        <li style="--full-image: url('../images/image-product-3.jpg');">
+        <li style="--full-image: url('../images/image-product-3.jpg');" tabindex="0">
           <img src="./images/image-product-3-thumbnail.jpg" alt="">
         </li>
-        <li style="--full-image: url('../images/image-product-4.jpg');">
+        <li style="--full-image: url('../images/image-product-4.jpg');" tabindex="0">
           <img src="./images/image-product-4-thumbnail.jpg" alt="">
         </li>
       </ul>

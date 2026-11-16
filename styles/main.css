@@ -165,7 +165,6 @@ header nav dialog {
 }
 
 dialog#cart {
-    /* display: flex; */
     max-inline-size: 25rem;
     margin-inline: 1rem;
     block-size: 17rem;
@@ -278,6 +277,14 @@ main {
     margin-block: auto;
     inline-size: 100%;
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    > * {
+        max-inline-size: clamp(0px, 100%, 40rem);
+        place-self: center;
+    }
 
     .container > * {
         margin: 1.5rem;
@@ -309,7 +316,6 @@ main {
 
     .cost {
         display: flex;
-        /* justify-content: space-between; */
         gap: 1rem;
 
         .current {
@@ -352,7 +358,6 @@ main {
         gap: 1.5rem;
 
         .container {
-            /* inline-size: 100%; */
             padding-block: 1rem;
             padding-inline: 1.5rem;
             display: flex;
@@ -399,9 +404,6 @@ main {
 
             &::after {
                 min-block-size: 0;
-                /* flex-grow: 1; */
-                /* inline-size: 1rem; */
-                /* block-size: 100px; */
                 order: -1;
             }
         }
@@ -412,14 +414,12 @@ main {
         display: grid;
         block-size: 20rem;
         inline-size: 100%;
-        /* padding: 5rem; */
 
         > .container {
             anchor-name: --image-container;
         }
 
         .gallery-data {
-            /* background: green; */
             position: absolute;
 
             > * {
@@ -429,7 +429,6 @@ main {
 
         .mobile {
             display: block;
-            background: red;
             position: fixed;
 
             .svg-button {
@@ -460,15 +459,7 @@ main {
             ~ .gallery-data li[aria-selected] {
                 display: block;
                 position: fixed;
-                /* inline-size: anchor-size(inline); */
-                /* block-size: anchor-size(block); */
-                /* background-image: var(--full-image); */
-                /* background-size: cover; */
-                /* background-position: center; */
-                /* background-repeat: no-repeat; */
                 z-index: -1;
-                /* position-anchor: --image-container; */
-                /* position-area: center; */
 
                 img {
                     display: none;
@@ -484,6 +475,7 @@ main {
                     background-image: var(--full-image);
                     background-position: center;
                     background-size: contain;
+                    background-size: cover;
                     background-repeat: no-repeat;
                 }
             }
@@ -495,8 +487,6 @@ main {
             .image-button.container {
                 anchor-name: --image-button;
             }
-
-            background: cyan;
         }
     }
 }
@@ -515,6 +505,11 @@ footer {
 
 /* svg icons */
 .svg-link, .svg-button, .icon-text-button {
+    place-self: center;
+    font-size: 0;
+    background: none;
+    border: none;
+
     &::after {
         content: '';
         display: block;
@@ -528,16 +523,6 @@ footer {
         block-size: calc(1px * var(--icon-height, 100%));
         aspect-ratio: var(--icon-width, 1) / var(--icon-height, 1);
     }
-        
-    /* inline-size: calc(1px * var(--icon-width, 100%));
-    block-size: calc(1px * var(--icon-height, 100%)); */
-    /* margin: 0 !important; */
-    /* padding-block: 0 !important;
-    padding-inline: 0 !important; */
-    place-self: center;
-    font-size: 0;
-    background: none;
-    border: none;
 }
 
 .site-logo {
@@ -590,7 +575,7 @@ footer {
 
 
 /* media query */
-@media (width > 65rem) {
+@media (width > 60rem) {
     body {
         padding-inline: 8rem;
     }
@@ -640,18 +625,16 @@ footer {
     }
 
     main {
-        display: flex;
         justify-content: space-between;
-        /* align-items: center; */
+        flex-direction: row;
         padding: 5rem;
         margin-block: 0;
-        /* block-size: 1000px; */
-        gap: 5rem;
-        
+        gap: clamp(0px, 5rem, 5%);
 
         > .container {
             align-content: center;
-            max-width: 32rem;
+            max-inline-size: clamp(0px, 50%, 32rem);
+
 
             .product {
                 font-size: 2.5rem;
@@ -662,7 +645,7 @@ footer {
             flex-wrap: wrap;
 
             .original {
-                min-width: 100%;
+                min-inline-size: 100%;
             }
         }
 
@@ -684,9 +667,8 @@ footer {
 
         .gallery {
             block-size: auto;
-            /* align-self: center; */
-            /* justify-self: center; */
-            
+            place-self: stretch;
+
             .mobile {
                 display: none;
             }
@@ -697,45 +679,48 @@ footer {
 
                 .image-button.container {
                     position: fixed;
-                    /* display: none; */
                     position-anchor: --image-container;
                     position-area: center;
                     aspect-ratio: 1;
-                    block-size: anchor-size(block);
-                    block-size: calc(anchor-size(block) / 5 * 4);
                     block-size: auto;
                     inline-size: anchor-size(inline);
+                    max-inline-size: 100%;
+                    max-block-size: 75%;
                     align-self: start;
-                    z-index: 4;
+                    background: none;
+                    border: none;
                 }
 
                 ~ .gallery-data {
-                    background: green;
                     display: flex;
                     flex-direction: row;
                     position: fixed;
-                    position-anchor: --image-container;
-                    position-area: center;
+                    position-anchor: --image-button;
+                    position-area: center bottom;
                     block-size: calc(anchor-size(block) / 5);
                     inline-size: anchor-size(inline);
+                    inline-size: max-content;
+                    max-block-size: 25%;
+                    max-inline-size: 100%;
                     justify-self: center;
-                    align-self: end;
-                    align-items: center;
-                    gap: 3rem;
+                    align-items: center;        
+                    gap: clamp(0px, 2rem, 5%);
+                    margin-block-start: 2rem;
                     
                     li {
                         display: block;
-                        flex: 1;
-                        border-radius: 1rem;
-                        overflow: hidden;
-                        /* block-size: auto;
-                        inline-size: auto; */
-                        /* min-inline-size: auto;
-                        min-block-size: auto; */
+                        flex-shrink: 1;
+                        flex-grow: 0;
+                        flex-basis: 10rem;
+                        overflow: visible;
+                        max-block-size: 100%;
+                        max-inline-size: 100%;
 
                         img {
                             block-size: auto;
                             inline-size: 100%;
+                            max-block-size: 100%;
+                            border-radius: 1rem;
                         }
                     }
 
@@ -747,7 +732,6 @@ footer {
                         img {
                             display: block;
                             object-fit: contain;
-                            /* z-index: -2; */
 
                         }
 
@@ -757,11 +741,141 @@ footer {
                             position-anchor: --image-button;
                             position-area: center;
                             block-size: anchor-size(block);
-                            inline-size: anchor-size(inline);
+                            inline-size: auto;
                             background-image: var(--full-image);
                             background-position: center;
                             background-size: contain;
                             background-repeat: no-repeat;
+                            border-radius: 1rem;
+                            aspect-ratio: 1;
+                        }
+                    }
+                }
+
+                dialog {
+                    margin: 0;
+                    padding: 0;
+                    min-block-size: 0;
+                    min-inline-size: 0;
+                    max-block-size: 50%;
+                    max-inline-size: 100%;
+                    position: fixed;
+                    place-self: center;
+                    aspect-ratio: 1;
+                    block-size: auto;
+                    inline-size: 100%;
+                    overflow: visible;
+                    border: none;
+                    anchor-name: --lightbox;
+                    background: none;
+
+                    &::backdrop {
+                        background-color: color-mix(in srgb, #0000 25%, var(--black) 100%);
+                    }
+
+                    .container {
+                        display: flex;
+                        position: fixed;
+                        position-anchor: --lightbox;
+                        position-area: center;
+                        aspect-ratio: 1;
+                        max-block-size: 100%;
+                        max-inline-size: 100%;
+                        block-size: 100%;
+                        aspect-ratio: 1;
+                        align-self: start;
+                        anchor-name: --lightbox-image-container;
+                    }
+
+                    .svg-button {
+                        display: block;
+                        position: fixed;
+                        background: var(--white);
+                        aspect-ratio: 1;
+                        border-radius: 50%;
+                        margin: 0;
+                        block-size: 3rem;
+                        position-anchor: --lightbox-image-container;
+                        position-area: center;
+                        z-index: 3;
+
+                        &::after {
+                            place-self: center;
+                            mask-position: center;
+                            block-size: 1rem;
+                            inline-size: auto;
+                        }
+
+                        &.prev-icon {
+                            justify-self: start;
+                            translate: -50%;
+                        }
+                        &.next-icon {
+                            justify-self: end;
+                            translate: 50%;
+                        }
+
+                        &.close-icon {
+                            position-anchor: --lightbox-image-container;
+                            position-area: start center;
+                            align-self: end;
+                            justify-self: end;
+                            padding: 0;
+                            block-size: 1.25rem;
+                            margin-block-end: 1rem;
+                            background: none;
+                            color: var(--white);
+
+                            &::after {
+                                block-size: 100%;
+                                inline-size: auto;
+                            }
+                        }
+                    }
+
+                    container-type: inline-size;
+                    .gallery-data {
+                        display: flex;
+                        position: fixed;
+                        position-anchor: --lightbox-image-container;
+                        position-area: center bottom;
+                        block-size: calc(anchor-size(block) / 5);
+                        inline-size: anchor-size(inline);
+                        justify-self: center;
+                        align-self: start;
+                        align-items: center;
+                        margin-block: 2rem;
+
+                        padding-inline: 2rem;
+                        gap: 1.5rem;
+                        padding-inline: clamp(0px, 2cqi, 3rem);
+                        gap: clamp(0.5rem, 1cqi, 1.5rem);
+
+                        li {
+                            display: block;
+                            flex: 1;
+                            border-radius: 1rem;
+                            overflow: hidden;
+
+                            img {
+                                block-size: auto;
+                                inline-size: 100%;
+
+                            }
+
+                            &[aria-selected]::after {
+                                content: "";
+                                position: fixed;
+                                position-anchor: --lightbox-image-container;
+                                position-area: center;
+                                block-size: anchor-size(block);
+                                inline-size: anchor-size(inline);
+                                background-image: var(--full-image);
+                                background-position: center;
+                                background-size: contain;
+                                background-repeat: no-repeat;
+                                border-radius: 1rem;
+                            }
                         }
                     }
                 }
