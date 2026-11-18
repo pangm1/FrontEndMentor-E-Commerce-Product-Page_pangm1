@@ -30,6 +30,9 @@
 - do I need to remove event listeners?, how to do dynamically?
 - how to manipulate and insert element itself through text, safely?
 - how to separate currency symbol from cost, calculate total cost, and add the currency symbol back on
+- namespaces in javascript (modules?)
+- how to get json and image files from project folder
+- wait to change product before executing main javasript code
 
 *** TODO ***
 - how to provide site with product information and images

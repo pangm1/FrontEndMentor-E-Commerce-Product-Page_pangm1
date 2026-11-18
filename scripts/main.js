@@ -1,3 +1,16 @@
+import result from './change-product.js';
+
+try {
+    // console.log(result);
+    if (!result) {
+        throw error;
+    }
+} catch {
+    console.error('Could not fetch module');
+}
+
+// console.log('start main');
+
 // console.log(document);
 
 //*** Image Gallery ***//
@@ -100,7 +113,7 @@ const productThumbnail = document.getElementById('gallery-images').querySelector
 
 const cartList = document.getElementById('cart').querySelector('ul');
 
-const list = [productForm, quantityMinus, quantityPlus, quantity, productTitle, productCost, productThumbnail];
+// const list = [productForm, quantityMinus, quantityPlus, quantity, productTitle, productCost, productThumbnail];
 
 // console.log(list);
 
@@ -129,7 +142,7 @@ productForm.addEventListener('submit', (event) => {
 
         cartList.appendChild(newItem);
 
-        reorderListIDs();
+        reorderCart();
     }
     catch(error) {
     }
@@ -198,6 +211,7 @@ function multiplyCurrency(costText, quantity) {
 
 
 function reorderCart() {
+    // console.log(cartList.children);
     const cartItems = Array.from(cartList.children);
     cartItems.forEach((item, index) => {
         const product = item.querySelector('.product');
@@ -212,8 +226,8 @@ function reorderCart() {
             reorderCart();
         };
 
-        deleteButton.setAttribute('aria-describedby', product.id);
         product.id = newID;
+        deleteButton.setAttribute('aria-describedby', product.id);
         deleteButton.addEventListener('click', deleteItem);
     });
 };
