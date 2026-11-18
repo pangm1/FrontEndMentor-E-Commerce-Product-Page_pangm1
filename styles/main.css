@@ -167,7 +167,7 @@ header nav dialog {
 dialog#cart {
     max-inline-size: 25rem;
     margin-inline: 1rem;
-    block-size: 17rem;
+    block-size: 18rem;
     margin-inline: 0.5rem;
     margin-block-start: 1rem;
     flex-direction: column;
@@ -185,6 +185,7 @@ dialog#cart {
 
         .empty-message {
             display: flex;
+            inline-size: 25rem;
         }
 
     }
@@ -572,7 +573,6 @@ footer {
     --icon-width: 22;
     --icon-height: 20;
 }
-
 
 /* media query */
 @media (width > 60rem) {

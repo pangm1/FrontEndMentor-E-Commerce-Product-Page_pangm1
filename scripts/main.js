@@ -89,3 +89,131 @@ function stepGallery(gallery, increment) {
 }
 
 ///*** Cart ***//
+const productForm = document.forms['product'];
+const quantityMinus = productForm.getElementsByClassName('minus-icon')[0];
+const quantityPlus = productForm.getElementsByClassName('plus-icon')[0];
+const quantity = productForm.elements['quantity'];
+
+const productTitle = document.querySelector('.container h2.product').textContent;
+const productCost = document.querySelector('.container .cost .current .value').textContent;
+const productThumbnail = document.getElementById('gallery-images').querySelector(':first-child img');
+
+const cartList = document.getElementById('cart').querySelector('ul');
+
+const list = [productForm, quantityMinus, quantityPlus, quantity, productTitle, productCost, productThumbnail];
+
+// console.log(list);
+
+
+quantityMinus.addEventListener('click', (event) => {
+    event.preventDefault();
+    quantity.stepDown();
+    quantity.dispatchEvent(new Event('input', { bubbles: true }));
+});
+quantityPlus.addEventListener('click', (event) => {
+    event.preventDefault();
+    quantity.stepUp();
+    quantity.dispatchEvent(new Event('input', { bubbles: true }));
+});
+
+productForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    // console.log('submit');
+
+    try {
+        if (quantity.valueAsNumber < 1) {
+            throw new Error();
+        }
+
+        const newItem = createCartItem(productTitle, productCost, quantity.valueAsNumber, productThumbnail.src);
+
+        cartList.appendChild(newItem);
+
+        reorderListIDs();
+    }
+    catch(error) {
+    }
+});
+
+reorderCart();
+
+/* add as child of cart ul
+<li class="" data-item="" data-quantity="3">
+    <div class="container">
+        <img src="./images/image-product-1-thumbnail.jpg" alt="">
+    </div>
+    <p class="product" id="item1">
+        Fall Limited Edition Sneakers
+    </p>
+    <p>
+        <span class="cost">$125.00</span> &times; <span class="quantity">3</span>
+    </p>
+    <p class="">
+        <span class="total">$375.00</span>
+    </p>
+    <button type="button" class="svg-button delete-icon" aria-describedby="item1">
+        Delete
+    </button>
+</li>
+*/
+// do not create if quantity is invalid (0, ?)
+function createCartItem(productText, costText, quantity, thumbnailImage) {
+    const newItem = document.createElement('li');
+    // console.log(productText, costText, quantity, thumbnailImage);
+
+    const thumbnail = document.createElement('img');
+    thumbnail.src = thumbnailImage;
+    thumbnail.alt = '';
+    // console.log(thumbnail);
+    const deleteButton = document.createElement('button');
+    deleteButton.type = 'button';
+    deleteButton.classList.add('svg-button', 'delete-icon');
+    deleteButton.innerText = 'Delete';
+    // console.log(deleteButton);
+    // const container = document.createElement('div');
+    // container.classList.add('container');
+    // const img = productThumbnail.cloneNode();
+    newItem.innerHTML = `<div class="container">
+        ${thumbnail.outerHTML}
+    </div>
+    <p class="product">
+        ${productText}
+    </p>
+    <p>
+        <span class="cost">${costText}</span> &times; <span class="quantity">${quantity}</span>
+    </p>
+    <p class="">
+        <span class="total">${multiplyCurrency(costText, quantity)}</span>
+    </p>`;
+
+    newItem.appendChild(deleteButton);
+
+    return newItem;
+}
+
+function multiplyCurrency(costText, quantity) {
+    const [symbol, cost] = [costText[0], parseFloat(costText.substring(1))];
+    return symbol + (cost * quantity).toFixed(2);
+}
+
+
+function reorderCart() {
+    const cartItems = Array.from(cartList.children);
+    cartItems.forEach((item, index) => {
+        const product = item.querySelector('.product');
+        const newID = 'cartItem' + index;
+
+        const deleteButton = item.querySelector('.svg-button.delete-icon');
+        // console.log('deleteButton', deleteButton);
+
+        const deleteItem = () => {
+            // console.log('delete', item);
+            item.outerHTML = '';
+            reorderCart();
+        };
+
+        deleteButton.setAttribute('aria-describedby', product.id);
+        product.id = newID;
+        deleteButton.addEventListener('click', deleteItem);
+    });
+};

@@ -25,4 +25,13 @@
 - using anchors to position cart dialog relative to cart button
 - making image and container fit in the cells without it stretching the cell or the cell stretching by itself
 - how to get full size images and thumbnail in same element
+- how to delete cart item from list?
+- how to prevent html injection from javascript code
+- do I need to remove event listeners?, how to do dynamically?
+- how to manipulate and insert element itself through text, safely?
+- how to separate currency symbol from cost, calculate total cost, and add the currency symbol back on
 
+*** TODO ***
+- how to provide site with product information and images
+- interaction states, cart states using only CSS (counters?)
+- test with screenreader, keyboard-only, mouse-only, both
