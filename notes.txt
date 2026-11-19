@@ -33,8 +33,10 @@
 - namespaces in javascript (modules?)
 - how to get json and image files from project folder
 - wait to change product before executing main javasript code
+- styling dialog open close transitions
+- have counter work while hiding elements from tabbing order (use 'visibility: hidden' instead of display: none;);
+- managing CSS specificity
 
 *** TODO ***
-- how to provide site with product information and images
-- interaction states, cart states using only CSS (counters?)
+- fix layout issues
 - test with screenreader, keyboard-only, mouse-only, both
